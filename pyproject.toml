@@ -1,0 +1,20 @@
+[project]
+name = "ap.amase.cc"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "AmaseCocoa", email = "cocoa@amase.cc"},
+]
+dependencies = ["mkdocs>=1.6.1", "mkdocs-material>=9.6.8", "mkdocstrings[python]>=0.29.0", "mike>=2.1.3"]
+requires-python = "==3.13.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+
+[tool.pdm]
+distribution = false
+
+[tool.pdm.scripts]
+start = "flask run -p 54321"
+"deploy-latest" = "mike deploy latest"
+"deploy-stable" = "mike deploy stable"
