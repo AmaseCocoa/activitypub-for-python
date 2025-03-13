@@ -1,3 +1,5 @@
-.venv
-__pycache__
 .pdm-python
+
+.venv/
+__pycache__/
+site/
