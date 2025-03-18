@@ -518,6 +518,54 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#apsigdraftsigner" class="md-nav__link">
+    <span class="md-ellipsis">
+      apsig.draft.Signer
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="apsig.draft.Signer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apsigdraftsignersign" class="md-nav__link">
+    <span class="md-ellipsis">
+      apsig.draft.Signer.sign
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="apsig.draft.Signer.sign">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#apsigdraftverifier" class="md-nav__link">
     <span class="md-ellipsis">
       apsig.draft.Verifier
@@ -528,9 +576,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#example_2" class="md-nav__link">
     <span class="md-ellipsis">
-      例
+      Example
     </span>
   </a>
   
@@ -547,18 +595,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#example_3" class="md-nav__link">
     <span class="md-ellipsis">
-      例
+      Example
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#errors" class="md-nav__link">
     <span class="md-ellipsis">
-      エラー
+      Errors
     </span>
   </a>
   
@@ -773,6 +821,54 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#apsigdraftsigner" class="md-nav__link">
+    <span class="md-ellipsis">
+      apsig.draft.Signer
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="apsig.draft.Signer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apsigdraftsignersign" class="md-nav__link">
+    <span class="md-ellipsis">
+      apsig.draft.Signer.sign
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="apsig.draft.Signer.sign">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#apsigdraftverifier" class="md-nav__link">
     <span class="md-ellipsis">
       apsig.draft.Verifier
@@ -783,9 +879,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#example_2" class="md-nav__link">
     <span class="md-ellipsis">
-      例
+      Example
     </span>
   </a>
   
@@ -802,18 +898,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#example_3" class="md-nav__link">
     <span class="md-ellipsis">
-      例
+      Example
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#errors" class="md-nav__link">
     <span class="md-ellipsis">
-      エラー
+      Errors
     </span>
   </a>
   
@@ -854,13 +950,92 @@
 
 
 <h1 id="apsigdraft"><code>apsig.draft</code><a class="headerlink" href="#apsigdraft" title="Permanent link">&para;</a></h1>
-<p><a href="https://datatracker.ietf.org/doc/html/draft-cavage-http-signatures-12">draft-cavage-http-signatures-12</a>に準拠したHTTP署名の実装。</p>
+<p>An implementation of HTTP signatures compliant with the <a href="https://datatracker.ietf.org/doc/html/draft-cavage-http-signatures-12">draft-cavage-http-signatures-12</a></p>
+<h2 id="apsigdraftsigner"><code>apsig.draft.Signer</code><a class="headerlink" href="#apsigdraftsigner" title="Permanent link">&para;</a></h2>
+<p>Class for signing HTTP signatures.</p>
+<p>You can import directly from <code>apsig.draft</code>:
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">apsig.draft</span><span class="w"> </span><span class="kn">import</span> <span class="n">Signer</span>
+</code></pre></div></p>
+<h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">apsig.draft</span><span class="w"> </span><span class="kn">import</span> <span class="n">Signer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">cryptography.hazmat.primitives.asymmetric</span><span class="w"> </span><span class="kn">import</span> <span class="n">rsa</span>
+
+<span class="n">private_key</span> <span class="o">=</span> <span class="n">rsa</span><span class="o">.</span><span class="n">generate_private_key</span><span class="p">(</span><span class="n">public_exponent</span><span class="o">=</span><span class="mi">65537</span><span class="p">,</span> <span class="n">key_size</span><span class="o">=</span><span class="mi">2048</span><span class="p">)</span>
+
+<span class="c1"># HTTP Request Details (Here we use dummy, actually copying this code will not work)</span>
+<span class="n">method</span> <span class="o">=</span> <span class="s2">&quot;POST&quot;</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://example.com/api&quot;</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Date&quot;</span><span class="p">:</span> <span class="s2">&quot;Wed, 21 Oct 2015 07:28:00 GMT&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">body</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;value&quot;</span><span class="p">}</span>
+<span class="n">signer</span> <span class="o">=</span> <span class="n">Signer</span><span class="p">(</span>
+    <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+    <span class="n">private_key</span><span class="o">=</span><span class="n">private_key</span><span class="p">,</span>
+    <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span>
+    <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span>
+    <span class="n">key_id</span><span class="o">=</span><span class="s2">&quot;https://example.com/users/johndoe#main-key&quot;</span><span class="p">,</span>
+    <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>parameter</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>private_key</code></td>
+<td><code>cryptography.hazmat.primitives.asymmetric.rsa.RSAPrivateKey</code></td>
+<td>The RSA private key used to sign the request.</td>
+</tr>
+<tr>
+<td><code>method</code></td>
+<td><code>str</code></td>
+<td>The HTTP method (e.g., <code>GET</code>, <code>POST</code>).</td>
+</tr>
+<tr>
+<td><code>url</code></td>
+<td><code>str</code></td>
+<td>The URL of the request.</td>
+</tr>
+<tr>
+<td><code>headers</code></td>
+<td><code>dict</code></td>
+<td>A dictionary of HTTP headers that will be signed.</td>
+</tr>
+<tr>
+<td><code>key_id</code></td>
+<td><code>str</code></td>
+<td>The key identifier to include in the signature header.</td>
+</tr>
+<tr>
+<td><code>body</code></td>
+<td><code>bytes</code> or <code>dict</code></td>
+<td>The request body. Defaults to an empty byte string.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="apsigdraftsignersign"><code>apsig.draft.Signer.sign</code><a class="headerlink" href="#apsigdraftsignersign" title="Permanent link">&para;</a></h3>
+<p>Create HTTP Signature. </p>
+<h4 id="example_1">Example<a class="headerlink" href="#example_1" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="o">...</span>
+<span class="n">signed_headers</span> <span class="o">=</span> <span class="n">signer</span><span class="o">.</span><span class="n">sign</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">signed_headers</span><span class="p">)</span> <span class="c1"># signed headers</span>
+</code></pre></div>
 <h2 id="apsigdraftverifier"><code>apsig.draft.Verifier</code><a class="headerlink" href="#apsigdraftverifier" title="Permanent link">&para;</a></h2>
-<p>HTTP署名を検証するためのクラス。</p>
-<p><code>apsig.draft</code>から直接インポートできます: 
+<p>Class for verifying HTTP signatures.</p>
+<p>You can import directly from <code>apsig.draft</code>:
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">apsig.draft</span><span class="w"> </span><span class="kn">import</span> <span class="n">Verifier</span>
 </code></pre></div></p>
-<h3 id="_1">例<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<h3 id="example_2">Example<a class="headerlink" href="#example_2" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">apsig.draft</span><span class="w"> </span><span class="kn">import</span> <span class="n">Verifier</span>
@@ -885,7 +1060,7 @@
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p><code>body</code>は<code>bytes</code>形式も許容しますが、検証が失敗する可能性があるため辞書型の場合はそのまま<code>dict</code>として渡すべきです。</p>
+<p>The <code>body</code> is also acceptable in <code>bytes</code> format, but should be passed as <code>dict</code> for dictionary types since verification may fail.</p>
 </div>
 <table>
 <thead>
@@ -924,7 +1099,7 @@
 </tbody>
 </table>
 <h3 id="apsigdraftverifierverify"><code>apsig.draft.Verifier.verify</code><a class="headerlink" href="#apsigdraftverifierverify" title="Permanent link">&para;</a></h3>
-<p>署名を検証します。</p>
+<p>Verify signatures. </p>
 <table>
 <thead>
 <tr>
@@ -941,14 +1116,13 @@
 </tr>
 </tbody>
 </table>
-<h4 id="_2">例<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
+<h4 id="example_3">Example<a class="headerlink" href="#example_3" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code><span class="o">...</span>
-<span class="n">verifier</span> <span class="o">=</span> <span class="n">Verifier</span><span class="p">(</span><span class="n">public_key</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">body</span><span class="p">)</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">verifier</span><span class="o">.</span><span class="n">verify</span><span class="p">()</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="c1"># keyId or None (failed)</span>
 </code></pre></div>
-<h4 id="_3">エラー<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
+<h4 id="errors">Errors<a class="headerlink" href="#errors" title="Permanent link">&para;</a></h4>
 <p>The following will only occur if the <code>raise_on_fail</code> argument is passed as <code>True</code> when calling <code>Verifier.verify</code>:</p>
 <ul>
 <li><strong>apsig.exceptions.MissingSignature</strong>: Occurs when the Signature header is not present in the signed text.</li>
@@ -977,7 +1151,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 18, 2025 05:35:58">March 18, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 18, 2025 06:17:22">March 18, 2025</span>
   </span>
 
     
