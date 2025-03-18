@@ -3,7 +3,7 @@
 The `ProofSigner` and `ProofVerifier` classes implement the functionality for creating and verifying Object Integrity Proofs as described in [FEP-8b32](https://codeberg.org/fediverse/fep/src/branch/main/fep/8b32/fep-8b32.md).
 
 ## Class: `ProofSigner`
-`apsig`から直接インポートできます: 
+You can import directly from `apsig`:
 ```python
 from apsig import ProofSigner
 ```

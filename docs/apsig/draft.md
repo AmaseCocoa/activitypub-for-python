@@ -1,13 +1,66 @@
 # `apsig.draft`
-[draft-cavage-http-signatures-12](https://datatracker.ietf.org/doc/html/draft-cavage-http-signatures-12)に準拠したHTTP署名の実装。
-## `apsig.draft.Verifier`
-HTTP署名を検証するためのクラス。
+An implementation of HTTP signatures compliant with the [draft-cavage-http-signatures-12](https://datatracker.ietf.org/doc/html/draft-cavage-http-signatures-12)
+## `apsig.draft.Signer`
+Class for signing HTTP signatures.
 
-`apsig.draft`から直接インポートできます: 
+You can import directly from `apsig.draft`:
+```python
+from apsig.draft import Signer
+```
+### Example
+```python
+import json
+
+from apsig.draft import Signer
+from cryptography.hazmat.primitives.asymmetric import rsa
+
+private_key = rsa.generate_private_key(public_exponent=65537, key_size=2048)
+
+# HTTP Request Details (Here we use dummy, actually copying this code will not work)
+method = "POST"
+url = "https://example.com/api"
+headers = {
+    "Content-Type": "application/json",
+    "Date": "Wed, 21 Oct 2015 07:28:00 GMT",
+}
+body = {"key": "value"}
+signer = Signer(
+    headers=headers,
+    private_key=private_key,
+    method=method,
+    url=url,
+    key_id="https://example.com/users/johndoe#main-key",
+    body=body,
+)
+```
+
+| parameter    | type              | description | 
+| ------------ | ----------------- | ------------------------- | 
+| `private_key` | `cryptography.hazmat.primitives.asymmetric.rsa.RSAPrivateKey` | The RSA private key used to sign the request. | 
+| `method`     | `str`             | The HTTP method (e.g., `GET`, `POST`). | 
+| `url`        | `str`             | The URL of the request. | 
+| `headers`    | `dict`            | A dictionary of HTTP headers that will be signed. | 
+| `key_id`       | `str` | The key identifier to include in the signature header. | 
+| `body`       | `bytes` or `dict` | The request body. Defaults to an empty byte string. | 
+
+### `apsig.draft.Signer.sign`
+Create HTTP Signature. 
+
+#### Example
+```python
+...
+signed_headers = signer.sign()
+
+print(signed_headers) # signed headers
+```
+## `apsig.draft.Verifier`
+Class for verifying HTTP signatures.
+
+You can import directly from `apsig.draft`:
 ```python
 from apsig.draft import Verifier
 ```
-### 例
+### Example
 ```python
 import json
 
@@ -32,9 +85,9 @@ body = {"key": "value"}
 verifier = Verifier(public_key, method, url, headers, body)
 ```
 !!! warning
-    `body`は`bytes`形式も許容しますが、検証が失敗する可能性があるため辞書型の場合はそのまま`dict`として渡すべきです。
+    The `body` is also acceptable in `bytes` format, but should be passed as `dict` for dictionary types since verification may fail.
 
-| parameter    | type              | description                                                                                                                | 
+| parameter    | type              | description | 
 | ------------ | ----------------- | -------------------------------------------------------------------------------------------------------------------------- | 
 | `public_pem` | `str`             | Public key in PEM format or `cryptography.hazmat.primitives.asymmetric.rsa.RSAPublicKey` format used to verify signatures. | 
 | `method`     | `str`             | The HTTP method (e.g., `GET`, `POST`).                                                                                     | 
@@ -43,21 +96,20 @@ verifier = Verifier(public_key, method, url, headers, body)
 | `body`       | `bytes` or `dict` | The request body. Defaults to an empty byte string.                                                                        | 
 
 ### `apsig.draft.Verifier.verify`
-署名を検証します。
+Verify signatures. 
 
 | parameter       | type              | description                                                           | 
 | --------------- | ----------------- | --------------------------------------------------------------------- | 
 | `raise_on_fail` | `bool`            | Whether to return an error on verification failure. Default is False. | 
 
-#### 例
+#### Example
 ```python
 ...
-verifier = Verifier(public_key, method, url, headers, body)
 result = verifier.verify()
 
 print(result) # keyId or None (failed)
 ```
-#### エラー
+#### Errors
 
 The following will only occur if the `raise_on_fail` argument is passed as `True` when calling `Verifier.verify`:
 
