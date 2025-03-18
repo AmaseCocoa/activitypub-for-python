@@ -16,6 +16,4 @@ distribution = false
 
 [tool.pdm.scripts]
 serve = "mkdocs serve"
-"mike:serve" = "mike serve"
-"deploy-latest" = "mike deploy latest"
-"deploy-stable" = "mike deploy stable"
+"deploy:gh" = "mkdocs gh-deploy --force"
