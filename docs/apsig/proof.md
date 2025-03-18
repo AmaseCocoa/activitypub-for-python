@@ -84,11 +84,14 @@ Signs the unsecured document by creating a proof and returning the signed docume
 ## Example Usage
 
 ```python
+import datetime
+
 from apsig import ProofSigner
 from cryptography.hazmat.primitives.asymmetric import ed25519
 
 private_key = ed25519.Ed25519PrivateKey.generate()
 public_key = private_key.public_key()
+now = datetime.datetime.now().isoformat(sep="T", timespec="seconds") + "Z"
 
 # Create a ProofSigner instance with a private key
 proof_signer = ProofSigner(private_key)
@@ -102,6 +105,9 @@ unsecured_document = {
 options = {
     "type": "DataIntegrityProof",
     "cryptosuite": "eddsa-jcs-2022",
+    "proofPurpose": "assertionMethod",
+    "verificationMethod": "https://example.com/actor#ed25519-key",
+    "created": now,
 }
 
 # Sign the unsecured document
@@ -202,10 +208,13 @@ An alias for the `verify_proof` method.
 ## Example Usage
 
 ```python
+import datetime
+
 from apsig import ProofSigner
 from cryptography.hazmat.primitives.asymmetric import ed25519
 
 proof_signer = ProofVerifier(public_key)
+now = datetime.datetime.now().isoformat(sep="T", timespec="seconds") + "Z"
 
 secured_document = {
     "data": "This is a sample document.",
@@ -213,6 +222,9 @@ secured_document = {
         "proofValue": "base58btc_encoded_signature",
         "type": "DataIntegrityProof",
         "cryptosuite": "eddsa-jcs-2022",
+        "proofPurpose": "assertionMethod",
+        "verificationMethod": "https://example.com/actor#ed25519-key",
+        "created": now,
     }
 } # not working this (invalid proofValue)
 
