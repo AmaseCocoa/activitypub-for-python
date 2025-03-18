@@ -1,0 +1,9 @@
+[submodule "libs/apmodel"]
+	path = libs/apmodel
+	url = https://github.com/AmaseCocoa/apmodel
+[submodule "libs/apsig"]
+	path = libs/apsig
+	url = https://github.com/AmaseCocoa/apsig
+[submodule "libs/apkit"]
+	path = libs/apkit
+	url = https://github.com/AmaseCocoa/apkit

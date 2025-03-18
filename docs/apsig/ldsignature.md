@@ -7,15 +7,6 @@ The `LDSignature` class provides methods for signing and verifying Linked Data s
 #### `__init__(self)`
 Initializes an instance of the `LDSignature` class.
 
-#### `__normalized_hash(self, data: dict) -> bytes`
-Generates a normalized hash of the given data.
-
-**Args:**
-- `data` (dict): The data to be normalized and hashed.
-
-**Returns:**
-- `bytes`: The SHA-256 hash of the normalized data in hexadecimal format.
-
 #### `sign(self, doc: dict, creator: str, private_key: rsa.RSAPrivateKey, options: dict = None, created: datetime.datetime = None) -> dict`
 Signs the provided document using the specified RSA private key.
 
@@ -35,11 +26,14 @@ Verifies the signature of the provided document against the given public key.
 **Args:**
 - `doc` (dict): The signed document to verify.
 - `public_key` (rsa.RSAPublicKey | str): The RSA public key in PEM format or as a multibase-encoded string.
+- `raise_on_fail` (bool): Whether to return an error on verification failure. Default is False.
 
 **Returns:**
-- `bool`: True if the signature is valid; otherwise, an exception is raised.
+- `string` or `None`: On success, the keyId of the creator is returned; on failure, None is returned.
 
 **Raises:**
+The following will only occur if the `raise_on_fail` argument is passed as `True` when calling `LDSignature.verify`:
+
 - `MissingSignature`: If the signature section is missing in the document.
 - `UnknownSignature`: If the signature type is not recognized.
 - `VerificationFailed`: If the signature verification fails.
@@ -48,7 +42,7 @@ Verifies the signature of the provided document against the given public key.
 
 ```python
 from apsig import LDSignature
-from cryptography.hazmat.primitives import rsa
+from cryptography.hazmat.primitives.asymmetric import rsa
 
 private_key = rsa.generate_private_key(public_exponent=65537, key_size=2048)
 public_key = private_key.public_key()
@@ -67,14 +61,16 @@ print("Generated Document with Signature:")
 print(json.dumps(signed_document, indent=2))
 
 # Verify the signature
-is_valid = ld_signature.verify(signed_document, public_key)
-print("Is the signature valid?", is_valid)
+result = ld_signature.verify(signed_document, public_key)
+print("Is the signature valid?", False if result is None else True)
 ```
 
 ## Notes
 - The `LDSignature` class assumes the usage of RSA keys and follows the signature format defined by the W3C.
 
 ## Exceptions
+The following will only occur if the `raise_on_fail` argument is passed as `True` when calling `LDSignature.verify`:
+
 - **MissingSignature**: Raised when the signature section is not found in the document.
 - **UnknownSignature**: Raised when the signature type is not recognized.
 - **VerificationFailed**: Raised when the signature verification fails due to an invalid signature.

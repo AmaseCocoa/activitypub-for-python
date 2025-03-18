@@ -3,7 +3,10 @@
 The `ProofSigner` and `ProofVerifier` classes implement the functionality for creating and verifying Object Integrity Proofs as described in [FEP-8b32](https://codeberg.org/fediverse/fep/src/branch/main/fep/8b32/fep-8b32.md).
 
 ## Class: `ProofSigner`
-
+`apsig`から直接インポートできます: 
+```python
+from apsig import ProofSigner
+```
 ### Initialization
 
 #### `__init__(self, private_key: ed25519.Ed25519PrivateKey | str)`
@@ -82,9 +85,9 @@ Signs the unsecured document by creating a proof and returning the signed docume
 
 ```python
 from apsig import ProofSigner
-from cryptography.hazmat.primitives import rsa
+from cryptography.hazmat.primitives.asymmetric import ed25519
 
-private_key = rsa.generate_private_key(public_exponent=65537, key_size=2048)
+private_key = ed25519.Ed25519PrivateKey.generate()
 public_key = private_key.public_key()
 
 # Create a ProofSigner instance with a private key
@@ -108,14 +111,17 @@ print(signed_document)
 ```
 
 ## Notes
-- Ensure that the necessary libraries (`hashlib`, `jcs`, `cryptography`, `multiformats`) are installed in your environment.
-- The `ProofSigner` class is designed for use with Ed25519 keys and follows the EdDSA signing standard.
+- apsig only supports the use of ed25519 private keys for signing.
 
 ## Exceptions
 - **TypeError**: Raised when the provided private key is not of type Ed25519.
 - **ValueError**: Raised when the provided options for transformation are invalid.
 
 ## Class: `ProofVerifier`
+`apsig`から直接インポートできます: 
+```python
+from apsig import ProofVerifier
+```
 
 ### Initialization
 
@@ -188,6 +194,7 @@ An alias for the `verify_proof` method.
 
 **Args:**
 - `secured_document` (dict): The document containing the proof to be verified.
+- `raise_on_fail` (bool): Whether to return an error on verification failure. Default is False.
 
 **Returns:**
 - `dict`: The result of the proof verification.
@@ -196,9 +203,8 @@ An alias for the `verify_proof` method.
 
 ```python
 from apsig import ProofSigner
-from cryptography.hazmat.primitives import rsa
+from cryptography.hazmat.primitives.asymmetric import ed25519
 
-# Create a ProofSigner instance with a private key
 proof_signer = ProofVerifier(public_key)
 
 secured_document = {
@@ -212,13 +218,14 @@ secured_document = {
 
 # Verify the proof
 verification_result = proof_verifier.verify(secured_document)
-print("Verification Result:", verification_result)
+print("Verification Result:", verification_result) # If this code is executed as is, it is expected to return None (failure).
 ```
-
-## Notes
-- Ensure that the necessary libraries (`hashlib`, `jcs`, `cryptography`, `multiformats`) are installed in your environment.
-- The `ProofVerifier` class is designed for use with Ed25519 keys and follows the EdDSA signing standard.
 
 ## Exceptions
 - **TypeError**: Raised when the provided public key is not of type Ed25519.
+
+The following will only occur if the `raise_on_fail` argument is passed as `True` when calling `ProofVerifier.verify`:
+
 - **ValueError**: Raised when the proof is not found or when the options for transformation are invalid.
+- **apsig.exceptions.UnknownSignature**: Occurs when an invalid signature is passed.
+- **apsig.exceptions.VerificationFailed**: Returned when verification fails due to internal errors, etc.

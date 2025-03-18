@@ -1,5 +1,8 @@
 site_name: ActivityPub for Python
 site_url: https://ap.amase.cc
+repo_url: https://github.com/AmaseCocoa/activitypub-for-python
+edit_uri: edit/main/docs/
+
 theme:
   name: material
   language: en
@@ -11,10 +14,12 @@ theme:
     - navigation.instant
     - navigation.tabs
     - tags
-
+    - content.action.edit
 plugins:
   - search
-  - mkdocstrings
+  - termynal
+#  - offline
+#  - privacy
   - mike:
       # These fields are all optional; the defaults are as below...
       alias_type: symlink
@@ -24,6 +29,46 @@ plugins:
       version_selector: true
       css_dir: css
       javascript_dir: js
+  - git-revision-date-localized:
+      enable_creation_date: true
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [libs]
+
+markdown_extensions:
+  # Python Markdown
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+
+  # Python Markdown Extensions
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
 extra:
   version:
     provider: mike
