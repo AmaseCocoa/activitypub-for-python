@@ -27,7 +27,3 @@ The `Config` class is responsible for managing the configuration settings of the
     **use_apkit_router**: This attribute enables a simple router that returns `True` if all segments of a path (split by `/`) match.
     
     If disabled, the paths set in `APKit.add_actor_endpoint` and `APKit.actor` will not be utilized. However, disabling this option may improve performance when using longer paths for actors due to its inherent nature.
-
-## Conclusion
-
-The `Config` class is a crucial component for configuring the application's behavior, allowing developers to adjust settings as needed for their specific use cases.
